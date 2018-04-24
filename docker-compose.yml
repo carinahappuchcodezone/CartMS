@@ -1,0 +1,85 @@
+version: '3'
+
+services:
+  basketservice:
+    image: basketservice
+    depends_on:
+      - basket.data
+      - rabbitmq
+    build:
+      context: .
+      dockerfile: BasketService/Dockerfile
+
+  manufacturerservice:
+    image: manufacturerservice
+    build:
+      context: .
+      dockerfile: ManufacturerService/Dockerfile
+
+
+  orderservice:
+    image: orderservice
+    depends_on:      
+      - rabbitmq
+    build:
+      context: .
+      dockerfile: OrderService/Dockerfile
+
+
+  paymentmethodservice:
+    image: paymentmethodservice
+    build:
+      context: .
+      dockerfile: PaymentMethodService/Dockerfile
+
+
+  productcategoryservice:
+    image: productcategoryservice
+    build:
+      context: .
+      dockerfile: ProductCategoryService/Dockerfile
+
+
+  productservice:
+    image: productservice
+    build:
+      context: .
+      dockerfile: ProductService/Dockerfile
+
+
+  shipmentmethodservice:
+    image: shipmentmethodservice
+    build:
+      context: .
+      dockerfile: ShipmentMethodService/Dockerfile
+
+
+  shoppingcartapigateway:
+    image: shoppingcartapigateway
+    ports:
+     - "9008:80"
+    build:
+      context: .
+      dockerfile: ShoppingCartApiGateWay/Dockerfile
+
+ 
+
+  nosql.data:
+    image: mongo
+
+  basket.data:
+    image: redis
+      
+  rabbitmq:
+    hostname: my-rabbit
+    container_name: rabbit
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+     
+    
+
+
+  
+

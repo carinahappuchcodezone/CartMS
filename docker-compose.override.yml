@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+  basketservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "9001:80"
+
+  manufacturerservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "9002:80"
+
+
+  orderservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "9003:80"
+
+
+  paymentmethodservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "9004:80"
+
+
+  productcategoryservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "9005:80"
+
+
+  productservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "9006:80"
+
+
+  shipmentmethodservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "9007:80"
+
+
+  shoppingcartapigateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "9008:80"
+
+  basket.data:
+    ports:
+      - "6379:6379"    # Important: In a production environment your should remove the external port
+      
+  rabbitmq:
+    hostname: my-rabbit
+    container_name: rabbit
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"

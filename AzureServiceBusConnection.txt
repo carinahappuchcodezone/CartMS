@@ -1,0 +1,3 @@
+yKwjvMSSTsg7VPrkJhuWTOe5Zzjve03KEZXdGcnjZhM=
+
+Endpoint=sb://shoppingcartmessaging.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=yKwjvMSSTsg7VPrkJhuWTOe5Zzjve03KEZXdGcnjZhM=

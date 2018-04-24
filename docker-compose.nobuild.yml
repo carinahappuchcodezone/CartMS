@@ -1,0 +1,90 @@
+version: '3.4'
+
+
+
+
+services:
+  basketservice:
+    image: basketservice
+    depends_on:
+      - basket.data
+      - rabbitmq
+    build:
+      context: .
+      dockerfile: BasketService/Dockerfile
+
+  manufacturerservice:
+    image: manufacturerservice
+    build:
+      context: .
+      dockerfile: ManufacturerService/Dockerfile
+
+
+  orderservice:
+    image: orderservice
+    depends_on:      
+      - rabbitmq
+    build:
+      context: .
+      dockerfile: OrderService/Dockerfile
+
+
+  paymentmethodservice:
+    image: paymentmethodservice
+    build:
+      context: .
+      dockerfile: PaymentMethodService/Dockerfile
+
+
+  productcategoryservice:
+    image: productcategoryservice
+    build:
+      context: .
+      dockerfile: ProductCategoryService/Dockerfile
+
+
+  productservice:
+    image: productservice
+    build:
+      context: .
+      dockerfile: ProductService/Dockerfile
+
+
+  shipmentmethodservice:
+    image: shipmentmethodservice
+    build:
+      context: .
+      dockerfile: ShipmentMethodService/Dockerfile
+
+
+  shoppingcartapigateway:
+    image: shoppingcartapigateway
+    depends_on:
+      - basketservice
+      - manufacturerservice
+      - orderservice
+      - paymentmethodservice
+      - productcategoryservice
+      - shipmentmethodservice
+      - productservice
+    build:
+      context: .
+      dockerfile: ShoppingCartApiGateWay/Dockerfile
+
+  mysql.data:
+    image: mysql-server
+
+  nosql.data:
+    image: mongo
+  
+  basket.data:
+    image: redis
+    ports:
+      - "6379:6379"
+      
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+
+
